@@ -7,7 +7,7 @@ const validateProfileInput = require("../../validation/profile");
 const validateExperienceInput = require("../../validation/experience");
 const validateEducationInput = require("../../validation/education");
 
-const profile = require("../../models/Profile");
+const Profile = require("../../models/Profile");
 const User = require("../../models/User");
 
 // @route GET api/profile/test
@@ -282,7 +282,7 @@ router.delete(
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Profile.findOneAndRemove({ user: req.user.id }).then(() => {
-      user.findOneAndRemove({ _id: req.user.id }).then(() => {
+      User.findOneAndRemove({ _id: req.user.id }).then(() => {
         res.json({ sucess: true });
       });
     });
