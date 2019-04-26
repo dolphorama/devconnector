@@ -9,13 +9,15 @@ module.exports = function validateProfileInput(data) {
   data.status = !isEmpty(data.status) ? data.status : "";
   data.skills = !isEmpty(data.skills) ? data.skills : "";
 
+  console.log(data);
+
   if (!validator.isLength(data.handle, { min: 2, max: 40 })) {
     errors.handle = "Handle needs to be between 2 and 40 characters";
   }
-  if (!validator.isEmpty(data.handle)) {
+  if (validator.isEmpty(data.handle)) {
     errors.handle = "Handle is required";
   }
-  if (!validator.isEmpty(data.status)) {
+  if (validator.isEmpty(data.status)) {
     errors.status = "status field is required";
   }
   if (!validator.isEmpty(data.skills)) {

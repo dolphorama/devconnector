@@ -102,7 +102,7 @@ router.post(
   "/",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    const { errors, isValid } = validateProfileInput(req, body);
+    const { errors, isValid } = validateProfileInput(req.body);
 
     // check validation
     if (!isValid) {
@@ -117,6 +117,7 @@ router.post(
     if (req.body.website) porfileFields.website = req.body.website;
     if (req.body.location) porfileFields.location = req.body.location;
     if (req.body.bio) porfileFields.bio = req.body.bio;
+    if (req.body.status) porfileFields.status = req.body.status;
     if (req.body.githubusername)
       porfileFields.githubusername = req.body.githubusername;
     // skills spilt into array
